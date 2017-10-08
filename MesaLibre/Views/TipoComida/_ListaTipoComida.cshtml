@@ -1,0 +1,81 @@
+﻿
+@{
+
+    Layout = "";
+}
+
+<h2>Lista Tipo Comida</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nombre Comida")
+        </th>
+        <th>Acción</th>
+    </tr>
+
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_FACTURAVENTA)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NOMBRE + " " + item.CLIENTE.PERSONA.APELLIDO)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NUMEROIDENTIFICACION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHAVENTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURASINIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURAIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VALORIVAFACTURA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOTALFACTURA)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "GenerarNotaCredito") |
+                    @Html.ActionLink("Eliminar", "ResumenFacturaVenta")
+                </td>
+            </tr>
+        }*@
+
+    <tr>
+        <td>
+            @Html.Label("Costeña")
+
+        </td>
+        <td>
+            <a href="#">Editar</a>
+            <a href="#">Detalle</a>            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Mediterranea")
+        </td>
+        <td>
+            <a href="#">Editar</a>
+            <a href="#">Detalle</a>            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Extranjera")
+
+        </td>
+        <td>
+            <a href="#">Editar</a>|
+            <a href="#">Detalle</a>|            
+        </td>
+    </tr>
+
+</table>

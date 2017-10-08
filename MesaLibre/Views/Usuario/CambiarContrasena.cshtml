@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Cambiar Contraseña";
+}
+
+<h2>Cambiar Contraseña</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+
+@using (@Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-horizontal">
+        @*@Html.HiddenFor(ID_PERSONA)*@
+
+        <div class="form-group">
+            @Html.Label("Correo Electrónico", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("correoElectronico", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Numero Identificación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("numeroIdentificacino", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Nombre ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("nombreUsuario", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("apellidoUsuario", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Nueva Contraseña (*)", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Password("NuevaContrasena", "", new { @class = "form-control", @required = "required", @placeholder = "Nueva Contraseña" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Confirmar Contraseña (*)", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Password("ConfirmarContrasena", "", new { @placeholder = "Confirmar Contraseña", @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Cambiar Contraseña">
+            </div>
+
+        </div>
+    </div>
+}

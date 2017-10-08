@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Crear Local";
+
+    List<SelectListItem> listaRestaurantes = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Restaurante1",
+        Value = "Normal"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Restaturante2",
+        Value = "Gold"
+    }
+    };
+
+    List<SelectListItem> listaTipoLocal = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Matriz",
+        Value = "1"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Sucursal",
+        Value = "2"
+    }
+    };
+
+}
+
+<h2>Crear Local</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+@using (Html.BeginForm("CrearReservaManual", "Reserva", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("Restaurante", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("restaurante", listaRestaurantes, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Tipo Local", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("tipoLocal", listaTipoLocal, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Mesas", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" id="mesa" name="numeroMesa" /> Todas <br />
+                <input type="checkbox" id="mesa" name="numeroMesa" /> Costeña
+                <input type="checkbox" id="mesa" name="numeroMesa" /> Mediterranea
+                <input type="checkbox" id="mesa" name="numeroMesa" /> Extranjera
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Nombre Local", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("NombreComercial", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Teléfono Local", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("TelefonoRestaurante", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Dirección", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("DireccionRestaurante", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Nombres Representante", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("NombreRepresentante", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Teléfono Representate", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("TelefonoRepresentante", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Teléfono Adicional", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("TelefonoAdicional", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Imagen 1", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Imagen 2", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Imagen 3", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Imagen 5", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Imagen 6", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Imagen 7", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Regresar", "BuscarReservas", null, htmlAttributes: new { @class = "btn btn-default" })
+                <input type="submit" value="Ingresar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+

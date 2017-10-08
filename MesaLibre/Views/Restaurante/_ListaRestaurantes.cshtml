@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Lista Restaurantes";
+    Layout = "";
+}
+
+<h2>Lista Restaurantes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Razón Social")
+        </th>
+        <th>
+            @Html.DisplayName("Nombre Comercial")
+        </th>
+        <th>
+            @Html.DisplayName("RUC")
+        </th>
+        <th>
+            @Html.DisplayName("Teléfono Restaurante")
+        </th>
+        <th>
+            @Html.DisplayName("Dirección")
+        </th>
+        <th>
+            @Html.DisplayName("Tipo Restaurante")
+        </th>
+        <th></th>
+    </tr>
+
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_FACTURAVENTA)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NOMBRE + " " + item.CLIENTE.PERSONA.APELLIDO)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NUMEROIDENTIFICACION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHAVENTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURASINIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURAIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VALORIVAFACTURA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOTALFACTURA)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "GenerarNotaCredito") |
+                    @Html.ActionLink("Eliminar", "ResumenFacturaVenta")
+                </td>
+            </tr>
+        }*@
+
+    <tr>
+        <td>
+            @Html.Label("Rsetaurante 1")
+        </td>
+        <td>
+            @Html.Label("Restaurante Buen Sabor")
+        </td>
+        <td>
+            @Html.Label("0954564654001")
+        </td>
+        <td>
+            @Html.Label("09987878787")
+        </td>
+        <td>
+            @Html.Label("Av colon y Av amazonas")
+        </td>
+        <td>
+            @Html.Label("Gold")
+        </td>
+        <td>
+            <a href="#">Editar</a>
+            <a href="#">Detalle</a>
+            <a href="#">Elminar</a>
+        </td>
+    </tr>
+
+</table>

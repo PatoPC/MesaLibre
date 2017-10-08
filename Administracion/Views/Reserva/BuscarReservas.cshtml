@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Buscar Reservas";
+
+    List<SelectListItem> listaRestaurantes = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Matriz",
+        Value = "Matriz"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Sucursal 1",
+        Value = "Sucursal 1"
+    }
+    };
+}
+
+<h2>Buscar Reservas</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+<div class="row">
+    
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por numero referencia</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                    @using (Ajax.BeginForm("BuscarReservasPorReferencia", "Reserva", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaReservas_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Restaurante/Local", new { @class = "control-label" })
+                            @Html.DropDownList("NombreRestaurante", listaRestaurantes, "Seleccionar", new { @class = "form-control", @required = "required" })
+                            @Html.Label("Número referencia Reserva", new { @class = "control-label" })
+                            @Html.TextBox("ID_ReferenciaFactura", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por identificación cliente</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                    @using (Ajax.BeginForm("buscarReservasPorIdentificacionCliente", "Reserva", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaReservas_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Restaurante/Local", new { @class = "control-label" })
+                            @Html.DropDownList("NombreRestaurante", listaRestaurantes, "Seleccionar", new { @class = "form-control", @required = "required" })
+                            @Html.Label("Número identicación cliente", new { @class = "control-label" })
+                            @Html.TextBox("ID_IdentificacionCliente", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por fecha creación reserva</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                    @using (Ajax.BeginForm("buscarReservasPorFechaCreacion", "Reserva", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaReservas_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Fecha Inicio", new { @class = "control-label" })
+                            @Html.TextBox("fechaInicioBusqueda", null, new { @class = "form-control datepicker", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Fecha Fin", new { @class = "control-label" })
+                            @Html.TextBox("fechaFinBusqueda", null, new { @class = "form-control datepicker", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <img id="image_loading" src="~/Imagenes/loading.gif" width="30" height="30" style="display:none" />
+</div>
+<div id="cargarListaReservas_Ajax"></div>
+
+
+<script type="text/javascript">    
+
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true,
+        language: 'es',
+        todayHighlight: true
+    });
+</script>

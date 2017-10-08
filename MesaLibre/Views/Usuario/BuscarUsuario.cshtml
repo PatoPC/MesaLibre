@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Buscar Usuario";
+}
+
+<h2>Buscar Usuario</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búscar todos los usuarios</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                    @using (Ajax.BeginForm("BuscarTodosUsuarios", "Usuario", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaUsuarios_Parcial_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar Todos" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por identificación de Usuario</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                    @using (Ajax.BeginForm("BuscarUsuarioPorIdentificacion", "Usuario", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaUsuarios_Parcial_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Identificación Usuario", new { @class = "control-label" })
+                            @Html.TextBox("identificacionUsuario", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <img id="image_loading" src="~/Imagenes/loading.gif" width="30" height="30" style="display:none" />
+</div>
+<div id="cargarListaUsuarios_Parcial_Ajax"></div>

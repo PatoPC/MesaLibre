@@ -1,0 +1,231 @@
+﻿
+@{
+    ViewBag.Title = "Crear Reserva Manual";
+
+
+
+
+    List<SelectListItem> listaTipoMenu = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Brunch",
+        Value = "Brunch"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Almuerzo",
+        Value = "Almuerzo"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Cena",
+        Value = "Cena"
+    }
+    };
+
+    List<SelectListItem> listaTipoReserva = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Normal",
+        Value = "Normal"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Grupo",
+        Value = "Grupo"
+    }
+    };
+
+    List<SelectListItem> listaRestaurantes = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Matriz",
+        Value = "Matriz"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Sucursal 1",
+        Value = "Sucursal 1"
+    }
+    };
+
+    List<SelectListItem> listaNumeros = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "1",
+        Value = "1"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "2",
+        Value = "2"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "3",
+        Value = "3"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "4",
+        Value = "4"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "5",
+        Value = "5"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "2",
+        Value = "2"
+    }
+    };
+
+}
+
+<h2>Crear Reserva Manual</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+@using (Html.BeginForm("CrearReservaManual", "Reserva", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Ajax.BeginForm("BuscarPersonaPorIdentificacion", "Cliente", null,
+                                                     new AjaxOptions
+                                                     {
+                                                         HttpMethod = "Post",
+                                                         UpdateTargetId = "cargarDatosComensal_Ajax",
+                                                         LoadingElementId = "image_loading",
+                                                         InsertionMode = InsertionMode.Replace,
+                                                         OnSuccess = "enviarIdPersona"
+                                                     }, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="form-group">
+                @Html.Label("Identificación Comensal (*)", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Editor("IdenficacionComensal", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                </div>
+                <div class="col-lg-1">
+                    <input type="submit" class="btn btn-success" value="Buscar" />
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            <div class="row">
+                <div id="cargarDatosComensal_Ajax"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Fecha Reserva", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("FechaReserva", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Tipo Reserva", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TipoReserva", listaTipoReserva, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Número Comensales:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("NumeroComensales", listaNumeros, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Restaurante/Local", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("NombreRestaurante", listaRestaurantes, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Tipo Menu", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TipoMenu", listaTipoMenu, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Días", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table>                  
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> 8:00
+
+                        </td>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> 9:00
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> 9:30
+                        </td>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> 10:30
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("Observación", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextArea("datosObservacion",  new { @class = "form-control", @required = "required" } )
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Regresar", "BuscarReservas", null, htmlAttributes: new { @class = "btn btn-default" })
+                <input type="submit" value="Ingresar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+<script type="text/javascript">
+    
+    $(function () {
+        $('#FechaReserva').datetimepicker();
+    });
+
+</script>
+}

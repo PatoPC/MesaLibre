@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Buscar Cliente";
+
+    List<SelectListItem> listaLocales = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Local1",
+        Value = "Local1"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Local2",
+        Value = "Local2"
+    }
+    };
+}
+
+<h2>Buscar Cliente</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+<div class="row">
+
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por número de referencia</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    @using (Ajax.BeginForm("BuscarComensalPorIdentificacion", "Comensal", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaComensales_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">                            
+                            @Html.Label("Número de identificación", new { @class = "control-label" })
+                            @Html.TextBox("numeroIdentificacionComensal", null, new { @class = "form-control", @required = "required" })
+                            <input type="radio" id="reserva" name="1" /> Reservas Realizadas
+                            <input type="radio" id="reserva" name="1" /> Reservas Completadas
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por local de reserva</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    @using (Ajax.BeginForm("buscarComensalPorLocal", "Comensal", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaComensales_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Identificacion Cliente", new { @class = "control-label" })
+                            @Html.TextBox("identificacionCliente", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Local", new { @class = "control-label" })
+                            @Html.DropDownList("nombreLocal", listaLocales, "Seleccionar", new { @class = "form-control", @required = "required" })
+                            <input type="radio" id="reserva" name="2" /> Reservas Realizadas
+                            <input type="radio" id="reserva" name="2" /> Reservas Completadas
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por local de reserva</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    @using (Ajax.BeginForm("buscarComensalPorLocal", "Comensal", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaComensales_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Local", new { @class = "control-label" })
+                            @Html.DropDownList("nombreLocal", listaLocales, "Seleccionar", new { @class = "form-control", @required = "required" })
+                            <input type="radio" id="reservaBusqueda" name="reservaBusqueda" /> Reservas Realizadas
+                            <input type="radio" id="reservaBusqueda" name="reservaBusqueda" /> Reservas Completadas
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Fecha Inicio", new { @class = "control-label" })
+                            @Html.TextBox("fechaInicioBusqueda", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Fecha Fin", new { @class = "control-label" })
+                            @Html.TextBox("fechaFinBusqueda", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <img id="image_loading" src="~/Imagenes/loading.gif" width="30" height="30" style="display:none" />
+</div>
+<div id="cargarListaComensales_Ajax"></div>
+
+
+@section scripts{
+    <script type="text/javascript">
+
+
+        $(function () {
+            $('#fechaInicioBusqueda').datetimepicker();
+            $('#fechaFinBusqueda').datetimepicker();
+        });
+    </script>
+}

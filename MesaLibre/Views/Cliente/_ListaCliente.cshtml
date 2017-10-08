@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "";
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nombre")
+        </th>
+        <th>
+            @Html.DisplayName("Apellido")
+        </th>
+        <th>
+            @Html.DisplayName("Correo")
+        </th>
+        <th>
+            @Html.DisplayName("Teléfono")
+        </th>
+        <th>
+            @Html.DisplayName("Reservas Completas")
+        </th>        
+        <th>
+            Acción
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_FACTURAVENTA)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NOMBRE + " " + item.CLIENTE.PERSONA.APELLIDO)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NUMEROIDENTIFICACION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHAVENTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURASINIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURAIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VALORIVAFACTURA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOTALFACTURA)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "GenerarNotaCredito") |
+                    @Html.ActionLink("Eliminar", "ResumenFacturaVenta")
+                </td>
+            </tr>
+        }*@
+
+    <tr>
+        <td>
+            @Html.Label("Julio")
+        </td>
+        <td>
+            @Html.Label("Jaramillo")
+        </td>
+        <td>
+            @Html.Label("jj@cantantes.com")
+        </td>
+        <td>
+            @Html.Label("062899154")
+        </td>
+        <td>
+            @Html.Label("12")
+        </td>
+
+        <td>
+            <a href="#">Detalle</a>            
+        </td>
+    </tr>
+
+</table>
+

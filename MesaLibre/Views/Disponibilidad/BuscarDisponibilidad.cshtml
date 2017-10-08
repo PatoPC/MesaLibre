@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Buscar Disponibilidad";
+
+
+    List<SelectListItem> listaTipoMenu = new List<SelectListItem>(){
+            new SelectListItem
+            {
+                Text = "Brunch",
+                Value = "Brunch"
+            },
+            new SelectListItem
+            {
+                Text = "Almuerzo",
+                Value = "Almuerzo"
+            },
+            new SelectListItem
+            {
+                Text = "Cena",
+                Value = "Cena"
+            }
+        };
+
+    List<SelectListItem> listaRestaurantes = new List<SelectListItem>
+           (){
+
+                new SelectListItem
+                {
+                Text = "Restaurante1",
+                Value = "1"
+                }
+                ,
+                new SelectListItem
+                {
+                Text = "Restaurante2",
+                Value = "2"
+                }
+            };
+
+    List<SelectListItem> listaLocales = new List<SelectListItem>
+    (){
+
+                new SelectListItem
+                {
+                Text = "Local 1",
+                Value = "1"
+                }
+                ,
+                new SelectListItem
+                {
+                Text = "Local1",
+                Value = "2"
+                }
+            };
+
+}
+
+<h2>Buscar Disponibilidad</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+<div class="row">
+
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por restaurante</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    @using (Ajax.BeginForm("BuscarDisponibilidadPorRestuarante", "Disponibilidad", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaDisponibilidad_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Restaurante", new { @class = "control-label" })
+                            @Html.DropDownList("NombreRestaurante", listaRestaurantes, "Seleccionar", new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por correo</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    @using (Ajax.BeginForm("BuscarDisponibilidadPorRestuaranteTipoMenu", "Disponibilidad", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaDisponibilidad_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Restaurante", new { @class = "control-label" })
+                            @Html.DropDownList("NombreRestaurante", listaRestaurantes, "Seleccionar", new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Tipo Comida", new { @class = "control-label" })
+                            @Html.DropDownList("NombreRestaurante", listaTipoMenu, "Seleccionar", new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="container">
+    <img id="image_loading" src="~/Imagenes/loading.gif" width="30" height="30" style="display:none" />
+</div>
+<div id="cargarListaDisponibilidad_Ajax"></div>

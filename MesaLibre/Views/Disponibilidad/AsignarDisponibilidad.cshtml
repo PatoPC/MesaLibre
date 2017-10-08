@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "Asignar Disponibilidad";
+
+    List<SelectListItem> horasDisponibilidad = new List<SelectListItem>();
+
+    string ceroTexto = "";
+
+    for(int i=0; i<24; i++) {
+        if (i < 10)
+        {
+            ceroTexto = "0";
+        }
+        else
+        {
+            ceroTexto = "";
+        }
+        var objetoSelectItem = new SelectListItem
+        {
+            Text = ceroTexto + i,
+            Value = i.ToString()
+        };
+
+        horasDisponibilidad.Add(objetoSelectItem);
+
+    }
+
+    List<SelectListItem> minutossDisponibilidad = new List<SelectListItem>();
+
+
+    var objetoSelectItem11 = new SelectListItem
+    {
+        Text = "00",
+        Value = "00"
+    };
+
+    minutossDisponibilidad.Add(objetoSelectItem11);
+
+    var objetoSelectItem1 = new SelectListItem
+    {
+        Text = "15",
+        Value = "15"
+    };
+
+    minutossDisponibilidad.Add(objetoSelectItem1);
+
+    var objetoSelectItem2 = new SelectListItem
+    {
+        Text = "30",
+        Value = "30"
+    };
+
+    minutossDisponibilidad.Add(objetoSelectItem2);
+
+    var objetoSelectItem3 = new SelectListItem
+    {
+        Text = "45",
+        Value = "45"
+    };
+
+    minutossDisponibilidad.Add(objetoSelectItem3);
+
+
+
+
+    List<SelectListItem> listaTipoMenu = new List<SelectListItem>(){
+            new SelectListItem
+            {
+                Text = "Brunch",
+                Value = "Brunch"
+            },
+            new SelectListItem
+            {
+                Text = "Almuerzo",
+                Value = "Almuerzo"
+            },
+            new SelectListItem
+            {
+                Text = "Cena",
+                Value = "Cena"
+            }
+        };
+
+    List<SelectListItem> listaRestaurantes = new List<SelectListItem>
+           (){
+
+                new SelectListItem
+                {
+                Text = "Restaurante1",
+                Value = "1"
+                }
+                ,
+                new SelectListItem
+                {
+                Text = "Restaurante2",
+                Value = "2"
+                }
+            };
+
+    List<SelectListItem> listaLocales = new List<SelectListItem>
+    (){
+
+                new SelectListItem
+                {
+                Text = "Local 1",
+                Value = "1"
+                }
+                ,
+                new SelectListItem
+                {
+                Text = "Local1",
+                Value = "2"
+                }
+            };
+
+}
+
+<h2>Asignar Disponibilidad</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+@using (Html.BeginForm("AsignarDisponibilidad", "Disponibilidad", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("Restaurante", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("restaurante", listaRestaurantes, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Local", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("tipoLocal", listaLocales, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Tipo Menu", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("tipoLocal", listaTipoMenu, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Mesas", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" id="mesa" name="numeroMesa" /> Todas <br />
+                <input type="checkbox" id="mesa" name="numeroMesa" /> Mesa para 2
+                <input type="checkbox" id="mesa" name="numeroMesa" /> Mesa para 4
+                <input type="checkbox" id="mesa" name="numeroMesa" /> Mesa para 6
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Días", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> Todos
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> Lunes
+
+                        </td>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> Martes
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> Miercoles
+                        </td>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> Jueves
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> Viernes
+                        </td>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> Sabado
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="mesa" name="numeroMesa" /> Domingo
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Fecha Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("fechaInicioBusqueda", null, new { @class = "form-control datepicker", @required = "required" })
+                </div>
+         </div>
+        <div class="form-group">
+            @Html.Label("Horario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("listaHoras", horasDisponibilidad, "Seleccionar")
+                @Html.Label(":")
+                @Html.DropDownList("listaMinutos", minutossDisponibilidad, "Seleccionar")
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Fecha Fin", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("fechaFinBusqueda", null, new { @class = "form-control datepicker", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Horario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("listaHoras", horasDisponibilidad, "Seleccionar")
+                @Html.Label(":")
+                @Html.DropDownList("listaMinutos", minutossDisponibilidad, "Seleccionar")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Regresar", "BuscarReservas", null, htmlAttributes: new { @class = "btn btn-default" })
+                <input type="submit" value="Ingresar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section scripts{
+<script type="text/javascript">
+
+
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true,
+        language: 'es',
+        todayHighlight: true
+    });
+</script>
+}

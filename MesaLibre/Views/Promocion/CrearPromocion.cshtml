@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "Crear Promoción";
+
+    List<SelectListItem> listaRestaurantes = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Matriz",
+        Value = "Matriz"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Sucursal 1",
+        Value = "Sucursal 1"
+    }
+    };
+
+    List<SelectListItem> listaLocales = new List<SelectListItem>(){
+
+    new SelectListItem
+    {
+        Text = "Todos",
+        Value = "Todos"
+    }
+    ,
+    new SelectListItem
+    {
+        Text = "Local1",
+        Value = "Local1"
+    }
+     ,
+    new SelectListItem
+    {
+        Text = "Local2",
+        Value = "Local2"
+    }
+     ,
+    new SelectListItem
+    {
+        Text = "Local3",
+        Value = "Local3"
+    }
+    };
+
+}
+
+<h2>Crear Promoción</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+@using (Html.BeginForm("CrearPromocion", "Reserva", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <div class="row">
+                <div id="cargarDatosComensal_Ajax"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Nombre Promoción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("nombrePromocion", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Código Promoción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("codigoPromocion", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                <input type="button" class="btn btn-success" value="Generar" id="btnGenerarCodigoPromocion" onclick="generarCodigo()" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Restaurante/Local", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("NombreRestaurante", listaRestaurantes, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Local Aplica", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("localAplica", listaLocales, "Seleccionar", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Fecha Inicio", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("fechaInicioPromocion", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Fecha Fin", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("fechaFinPromocion", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Valor Descuento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("valorDescuento", new { htmlAttributes = new { @class = "form-control", @required = "required" } })                
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Descripción", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextArea("descripcionPromocion", new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Regresar", "BuscarReservas", null, htmlAttributes: new { @class = "btn btn-default" })
+                <input type="submit" value="Ingresar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script type="text/javascript">
+
+ function generarCodigo() {
+    $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("generarCodigoPromocion", "Promocion")',
+                    dataType: 'json',                    
+                    success: function (data) {
+
+                        $('#codigoPromocion').val(data);
+                    },
+                error: function (data) { alert('Error crear codigo'); },
+                });
+
+        }//generarCodigo
+
+        $(function () {
+            $('#fechaInicioPromocion').datetimepicker();
+            $('#fechaFinPromocion').datetimepicker();
+        });
+    </script>
+}

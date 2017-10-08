@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Mesa Libre", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reservas<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Buscar Reservas", "BuscarReservas", "Reserva")</li>
+                            <li>@Html.ActionLink("Crear Reserva Manual", "CrearReserva", "Reserva")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Proveedores<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Crear Proveedor", "CrearProveedor", "Proveedores")</li>
+                            <li>@Html.ActionLink("Buscar Proveedor", "BuscarProveedor", "Proveedores")</li>
+                            <li class="dropdown-header">Factura Proveedor</li>
+                            <li>@Html.ActionLink("Ingresar Factura", "IngresarFacturaProveedor", "FacturaProveedor")</li>
+                            <li>@Html.ActionLink("Buscar Factura", "BuscarFacturaProveedor", "FacturaProveedor")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorizar<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Crear Categoria", "CrearCategoria", "Categoria")</li>
+                            <li>@Html.ActionLink("Buscar Categoria", "BuscarCategoria", "Categoria")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">SubCategoria</li>
+                            <li>@Html.ActionLink("Crear SubCategoria", "CrearSubCategoria", "SubCategoria")</li>
+                            <li>@Html.ActionLink("Buscar SubCategoria", "BuscarSubCategoria", "SubCategoria")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Sección</li>
+                            <li>@Html.ActionLink("Crear Sección", "CrearSeccion", "Seccion")</li>
+                            <li>@Html.ActionLink("Buscar Sección", "BuscarSeccion", "Seccion")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ingresar Producto", "IngresarProducto", "Productos")</li>
+                            <li>@Html.ActionLink("Buscar Producto", "BuscarProductos", "Productos")</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Prototipos</li>
+                            <li>@Html.ActionLink("Ingresar Prototipo", "IngresarProductoPrototipo", "ProductoPrototipo")</li>
+                            <li>@Html.ActionLink("Buscar Prototipo", "BuscarProductoPrototipos", "ProductoPrototipo")</li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cambiar Contraseña", "CambiarContrasena", "CuentaUsuario")</li>
+                            <li>@Html.ActionLink("Crear Usuario", "CrearUsuario", "CuentaUsuario")</li>
+                            <li>@Html.ActionLink("Buscar Usuario", "BuscarUsuario", "CuentaUsuario")</li>
+                            <li>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "CuentaUsuario")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ventas", "BuscarReporteVentas", "ReporteVentas")</li>
+                            <li>@Html.ActionLink("Stock", "ReporteStockGeneral", "ReporteStock")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administar<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Clientes</li>
+                            <li>@Html.ActionLink("Crear Cliente", "IngresarCliente", "Cliente", null, new { id = "item 1" })</li>
+                            <li>@Html.ActionLink("Buscar Cliente", "BuscarClientes", "Cliente", null, new { id = "item 1" })</li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Negocio</li>
+                            @*<li>@Html.ActionLink("Datos Negocio", "EditarDatosEmpresa", "DatosEmpresa", null, new { id = "item 1" })</li>*@
+                            <li>@Html.ActionLink("IVA", "IndexPorcentajeIVA", "PorcentajeIVA")</li>
+                            <li>@Html.ActionLink("Caducados", "BuscarProductoCaducados", "ProductoCaducado")</li>
+                        </ul>
+                    </li>
+                </ul>
+              
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <span class="text-success">Nombre Usuario</span>
+                        </li>
+                    </ul>              
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mesa Libre <b>TICS KERNEL</b></p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

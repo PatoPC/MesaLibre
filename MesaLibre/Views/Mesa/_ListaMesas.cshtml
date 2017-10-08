@@ -1,0 +1,121 @@
+﻿
+@{
+
+    Layout = "";
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Restaurante")
+        </th>
+        <th>
+            @Html.DisplayName("Local")
+        </th>
+        <th>
+            @Html.DisplayName("Capacidad Mesa")
+        </th>
+        <th>
+            @Html.DisplayName("Cantidad Mesas")
+        </th>
+        <th>
+            @Html.DisplayName("Estado")
+        </th>
+        <th>Acción</th>
+    </tr>
+
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_FACTURAVENTA)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NOMBRE + " " + item.CLIENTE.PERSONA.APELLIDO)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NUMEROIDENTIFICACION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHAVENTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURASINIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURAIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VALORIVAFACTURA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOTALFACTURA)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "GenerarNotaCredito") |
+                    @Html.ActionLink("Eliminar", "ResumenFacturaVenta")
+                </td>
+            </tr>
+        }*@
+
+    <tr>
+        <td>
+            @Html.Label("Restaurante 1")
+        </td>
+        <td>
+            @Html.Label("Local 1")
+        </td>
+        <td>
+            @Html.Label("Mesa para 2")
+        </td>
+        <td>
+            @Html.Label("4")
+        </td>
+        <td>
+            @Html.Label("Habilitada")
+        </td>
+        <td>
+            <a href="#">Editar</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Restaurante 1")
+        </td>
+        <td>
+            @Html.Label("Local 1")
+        </td>
+        <td>
+            @Html.Label("Mesa para 4")
+        </td>
+        <td>
+            @Html.Label("3")
+        </td>
+        <td>
+            @Html.Label("Habilitada")
+        </td>
+        <td>
+            <a href="#">Editar</a>            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Restaurante 1")
+        </td>
+        <td>
+            @Html.Label("Local 1")
+        </td>
+        <td>
+            @Html.Label("Mesa para 6")
+        </td>
+        <td>
+            @Html.Label("2")
+        </td>
+        <td>
+            @Html.Label("Desactivada")
+        </td>
+        <td>
+            <a href="#">Editar</a>
+        </td>
+    </tr>
+
+</table>

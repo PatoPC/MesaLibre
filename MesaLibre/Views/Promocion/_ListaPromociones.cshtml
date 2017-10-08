@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "";
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nombre Promoción")
+        </th>
+        <th>
+            @Html.DisplayName("Código")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha Creación")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha Inicio")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha Fin")
+        </th>
+        <th>
+            @Html.DisplayName("Valor Descuento")
+        </th>
+        <th></th>
+    </tr>
+
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_FACTURAVENTA)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NOMBRE + " " + item.CLIENTE.PERSONA.APELLIDO)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NUMEROIDENTIFICACION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHAVENTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURASINIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURAIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VALORIVAFACTURA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOTALFACTURA)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "GenerarNotaCredito") |
+                    @Html.ActionLink("Eliminar", "ResumenFacturaVenta")
+                </td>
+            </tr>
+        }*@
+
+    <tr>
+        <td>
+            @Html.Label("2 x 1")
+        </td>
+        <td>
+            @Html.Label("01092018vx3")
+        </td>
+        <td>
+            @Html.Label("01/08/2017 13:45:16")
+        </td>
+        <td>
+            @Html.Label("15/08/2017 13:45:16")
+        </td>
+        <td>
+            @Html.Label("20/08/2017 13:45:16")
+        </td>
+        <td>
+            @Html.Label("5")
+        </td>
+        <td>
+            <a href="#">Detalle</a> |
+            <a href="#">Elminar</a>
+        </td>
+    </tr>
+
+</table>
+

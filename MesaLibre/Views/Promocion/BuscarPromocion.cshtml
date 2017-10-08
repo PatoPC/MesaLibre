@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Buscar Promocion";
+}
+
+<h2>Buscar Promoción</h2>
+
+@{
+    if (TempData["mensajeExitoso"] != null)
+    {
+        <div class="alert alert-success">
+            <p>
+                @TempData["mensajeExitoso"]
+            </p>
+        </div>
+    }
+    else if (TempData["mensajeError"] != null)
+    {
+        <div class="alert alert-danger">
+            <p>
+                @TempData["mensajeError"]
+            </p>
+        </div>
+    }
+}
+<div class="row">
+
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por código promoción</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    @using (Ajax.BeginForm("BuscarPromocionesPorCodigo", "Promocion", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaReservas_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">                            
+                            @Html.Label("Código promoción", new { @class = "control-label" })
+                            @Html.TextBox("ID_ReferenciaFactura", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>Búsqueda por fecha creación promoción</h5>
+            </div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    @using (Ajax.BeginForm("buscarPromocionPorFechaCreacion", "Promocion", null,
+new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "cargarListaReservas_Ajax",
+    LoadingElementId = "image_loading",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-inline", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-error" })
+                        <div class="form-group">
+                            @Html.Label("Fecha Inicio", new { @for = "fechaInicioBusqueda" })
+                            @Html.TextBox("fechaInicioBusqueda", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Fecha Fin", new { @for = "fechaFinBusqueda" })
+                            @Html.TextBox("fechaFinBusqueda", null, new { @class = "form-control", @required = "required" })
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <img id="image_loading" src="~/Imagenes/loading.gif" width="30" height="30" style="display:none" />
+</div>
+<div id="cargarListaReservas_Ajax"></div>
+
+@section scripts{
+    <script type="text/javascript">
+
+
+        $(function () {
+            $('#fechaInicioBusqueda').datetimepicker();
+            $('#fechaFinBusqueda').datetimepicker();
+        });
+    </script>
+}

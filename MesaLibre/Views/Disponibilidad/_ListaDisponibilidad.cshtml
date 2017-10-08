@@ -1,0 +1,128 @@
+﻿
+@{
+
+    Layout = "";
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Restaurante")
+        </th>
+        <th>
+            @Html.DisplayName("Local")
+        </th>
+        <th>
+            @Html.DisplayName("Mesas")
+        </th>
+        <th>
+            @Html.DisplayName("Tipo Comida")
+        </th>
+        <th>
+            @Html.DisplayName("Disponibilidad")
+        </th>        
+        <th>Acción</th>
+    </tr>
+
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_FACTURAVENTA)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NOMBRE + " " + item.CLIENTE.PERSONA.APELLIDO)
+                </td>
+                <td>
+                    @Html.Label(item.CLIENTE.PERSONA.NUMEROIDENTIFICACION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHAVENTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURASINIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBTOTALFACTURAIVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VALORIVAFACTURA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOTALFACTURA)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "GenerarNotaCredito") |
+                    @Html.ActionLink("Eliminar", "ResumenFacturaVenta")
+                </td>
+            </tr>
+        }*@
+
+    <tr>
+        <td>
+            @Html.Label("Restaurante 1")
+        </td>
+        <td>
+            @Html.Label("Local 1")
+        </td>
+        <td>
+            @Html.Label("Mesa para 2 - ")
+            @Html.Label("Mesa para 4 - ")
+            @Html.Label("Mesa para 6")            
+        </td>
+        <td>
+            @Html.Label("Lun-Vier 08:15 a 10:15")
+        </td>
+        <td>
+            @Html.Label("Brunch")
+        </td>
+        <td>
+            <a href="#">Editar</a>|
+            <a href="#">Elminar</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Restaurante 1")
+        </td>
+        <td>
+            @Html.Label("Local 1")
+        </td>
+        <td>
+            @Html.Label("Mesa para 2 - ")
+            @Html.Label("Mesa para 4")
+        </td>
+        <td>
+            @Html.Label("Martes - Jueves 10:00 a 14:30")
+        </td>
+        <td>
+            @Html.Label("Almuerzo")
+        </td>
+        <td>
+            <a href="#">Editar</a>|
+            <a href="#">Elminar</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Restaurante 1")
+        </td>
+        <td>
+            @Html.Label("Local 2")
+        </td>
+        <td>
+            @Html.Label("Mesa para 6")
+        </td>
+        <td>
+            @Html.Label("Todos los dias 16:00 a 22:00")
+        </td>
+        <td>
+            @Html.Label("Cena")
+        </td>
+        <td>
+            <a href="#">Editar</a>|
+            <a href="#">Elminar</a>
+        </td>
+    </tr>
+
+</table>
+
