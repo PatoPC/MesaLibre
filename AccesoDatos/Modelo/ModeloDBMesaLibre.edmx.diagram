@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="128a476e1fb7468daaaae8c226b97bdf" Name="Diagram1">
+        <EntityTypeShape EntityType="mesaLibreDBModel.IMAGENESLOCAL" Width="1.5" PointX="7.5" PointY="1" />
+        <EntityTypeShape EntityType="mesaLibreDBModel.LOCAL" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="mesaLibreDBModel.RESTAURANTE" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="mesaLibreDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="mesaLibreDBModel.TIPOCOMIDA" Width="1.5" PointX="7.5" PointY="3.625" />
+        <EntityTypeShape EntityType="mesaLibreDBModel.TIPORESTAURANTE" Width="1.5" PointX="0.75" PointY="2.375" />
+        <AssociationConnector Association="mesaLibreDBModel.FK_IMAGENES_REFERENCE_LOCAL" />
+        <AssociationConnector Association="mesaLibreDBModel.FK_LOCAL_REFERENCE_RESTAURA" />
+        <AssociationConnector Association="mesaLibreDBModel.FK_TIPOCOMI_REFERENCE_LOCAL" />
+        <AssociationConnector Association="mesaLibreDBModel.FK_RESTAURA_REFERENCE_TIPOREST" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

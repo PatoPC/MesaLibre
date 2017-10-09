@@ -135,7 +135,7 @@
                                                      }, new { @class = "form-horizontal", role = "form" }))
         {
             <div class="form-group">
-                @Html.Label("Identificación Comensal (*)", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Identificación Cliente (*)", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.Editor("IdenficacionComensal", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 </div>
@@ -152,7 +152,7 @@
         <div class="form-group">
             @Html.Label("Fecha Reserva", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("FechaReserva", new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.Editor("FechaReserva", new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
             </div>
         </div>
         <div class="form-group">
@@ -222,9 +222,11 @@
 }
 @section scripts{
 <script type="text/javascript">
-    
-    $(function () {
-        $('#FechaReserva').datetimepicker();
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true,
+        language: 'es',
+        todayHighlight: true
     });
 
 </script>
